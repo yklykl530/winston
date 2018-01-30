@@ -1,5 +1,5 @@
 {
-  "name": "winston",
+  "name": "winston-browser",
   "description": "A multi-transport async logging library for Node.js",
   "version": "3.0.0-rc1",
   "author": "Charlie Robbins <charlie.robbins@gmail.com>",
@@ -23,6 +23,7 @@
     "isstream": "0.1.x",
     "logform": "^1.2.1",
     "one-time": "0.0.4",
+    "readable-stream": "^2.3.3",
     "stack-trace": "0.0.x",
     "triple-beam": "^1.0.1",
     "winston-transport": "^3.0.1"
@@ -46,10 +47,15 @@
     "lint": "populist lib/*.js lib/winston/*.js lib/winston/**/*.js",
     "pretest": "npm run lint",
     "test": "nyc mocha test/*.test.js test/**/*.test.js",
-    "report": "nyc report --reporter=lcov"
+    "report": "nyc report --reporter=lcov",
+    "build": "browserify lib/browser/winston-browser.js -o build/browserify-bundle.js"
   },
   "engines": {
     "node": ">= 4.2.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "browser": {
+    "stream": "./node_modules/readable-stream/readable.js",
+    "isstream": "./lib/browser/isstream-browser.js"
+  }
 }
